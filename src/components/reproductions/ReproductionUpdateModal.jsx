@@ -155,14 +155,16 @@ function ClotureStage({ repro, onClose, onSuccess }) {
 
   const handleCloture = async () => {
     try {
-      await updateReproduction({
+      const payload = {
         id:                    repro.id,
         statut:                'terminee',
         nombre_nes:            nbSurvivants,
         bagues_pigeonneaux:    pigeonneaux.slice(0, nbSurvivants).map(p => p.bague),
         noms_pigeonneaux:      pigeonneaux.slice(0, nbSurvivants).map(p => p.nom),
         sexes_pigeonneaux:     pigeonneaux.slice(0, nbSurvivants).map(p => p.sexe),
-      }).unwrap();
+      };
+      console.log('[DEBUG ClotureStage] payload envoyé:', JSON.stringify(payload));
+      await updateReproduction(payload).unwrap();
       toast.success('🕊️ Reproduction clôturée — pigeonneaux créés !');
       onSuccess?.();
       onClose();

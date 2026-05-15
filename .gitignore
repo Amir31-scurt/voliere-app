@@ -1,1 +1,7 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Environment variables (sensitive — never commit!)
+.env
+.env.local
+.env.production

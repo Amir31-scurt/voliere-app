@@ -121,7 +121,7 @@ function SortieCard({ sortie, index }) {
 export default function SortieList() {
   const [showForm, setShowForm] = useState(false);
   const [typeFilter, setTypeFilter] = useState('');
-  const { data, isLoading } = useGetSortiesQuery({ type: typeFilter || undefined });
+  const { data, isLoading } = useGetSortiesQuery({ type: typeFilter || undefined }, { pollingInterval: 5000 });
   const sorties = data?.data || [];
 
   if (isLoading) return <Loader text="Chargement des sorties…" />;

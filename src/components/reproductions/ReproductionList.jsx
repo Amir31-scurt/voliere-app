@@ -258,7 +258,7 @@ export default function ReproductionList() {
   const [showForm, setShowForm]         = useState(false);
   const [updatingRepro, setUpdatingRepro] = useState(null);
 
-  const { data, isLoading, refetch } = useGetReproductionsQuery({});
+  const { data, isLoading, refetch } = useGetReproductionsQuery({}, { pollingInterval: 5000 });
   const repros = Array.isArray(data) ? data : (data?.data || []);
 
   if (isLoading) return <Loader text="Chargement des reproductions…" />;

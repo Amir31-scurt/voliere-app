@@ -16,7 +16,7 @@ export default function PigeonList() {
   const [editingPigeon, setEditingPigeon] = useState(null);
   const [viewingPigeon, setViewingPigeon] = useState(null);
 
-  const { data, isLoading } = useGetPigeonsQuery(filters);
+  const { data, isLoading } = useGetPigeonsQuery(filters, { pollingInterval: 5000 });
   const pigeons = data?.data || [];
 
   const handleEdit = (pigeon) => { setEditingPigeon(pigeon); setShowForm(true); };

@@ -8,10 +8,10 @@ import Loader from '../components/common/Loader';
 import { formatDate } from '../utils/helpers';
 
 export default function Dashboard() {
-  const { data: cagesData, isLoading: lc }   = useGetCagesQuery();
-  const { data: pigeonsData, isLoading: lp } = useGetPigeonsQuery({});
-  const { data: couplesData, isLoading: lcp } = useGetCouplesQuery({});
-  const { data: sortiesData, isLoading: ls  } = useGetSortiesQuery({});
+  const { data: cagesData, isLoading: lc }   = useGetCagesQuery(undefined, { pollingInterval: 5000 });
+  const { data: pigeonsData, isLoading: lp } = useGetPigeonsQuery({}, { pollingInterval: 5000 });
+  const { data: couplesData, isLoading: lcp } = useGetCouplesQuery({}, { pollingInterval: 5000 });
+  const { data: sortiesData, isLoading: ls  } = useGetSortiesQuery({}, { pollingInterval: 5000 });
 
   const pigeons = pigeonsData?.data || [];
   const couples = Array.isArray(couplesData) ? couplesData : (couplesData?.data || []);

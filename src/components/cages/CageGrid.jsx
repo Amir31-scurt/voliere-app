@@ -15,7 +15,7 @@ const containerVariants = {
 const PANEL_WIDTH = 360;
 
 export default function CageGrid({ voliere, view, filterStatut = 'all', selectedCage, setSelectedCage }) {
-  const { data: cages = [], isLoading } = useGetCagesQuery(voliere);
+  const { data: cages = [], isLoading } = useGetCagesQuery(voliere, { pollingInterval: 5000 });
 
   if (isLoading) return <Loader text={`Chargement de ${voliere}…`} />;
   if (cages.length === 0) return (

@@ -17,7 +17,7 @@ export default function CoupleList() {
   const [viewingCouple, setViewingCouple] = useState(null);
   const [statusFilter, setStatusFilter]   = useState('actif');
 
-  const { data, isLoading } = useGetCouplesQuery({ statut: statusFilter || undefined });
+  const { data, isLoading } = useGetCouplesQuery({ statut: statusFilter || undefined }, { pollingInterval: 5000 });
   const [separerCouple, { isLoading: isSeparing }] = useSeparerCoupleMutation();
   const couples = Array.isArray(data) ? data : (data?.data || []);
 
