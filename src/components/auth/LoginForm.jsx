@@ -17,7 +17,11 @@ export default function LoginForm() {
   const onSubmit = async ({ email, password }) => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/auth/login', {
+      const endpoint = import.meta.env.PROD 
+        ? 'https://voliere-server.vercel.app/api/auth/login' 
+        : (import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/auth/login` : '/api/auth/login');
+
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
