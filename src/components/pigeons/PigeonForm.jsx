@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreatePigeonMutation, useUpdatePigeonMutation } from '../../store/api/pigeonApi';
 import Modal from '../common/Modal';
@@ -10,6 +11,10 @@ export default function PigeonForm({ isOpen, onClose, pigeon = null }) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: pigeon || { sexe: 'male', statut: 'actif', origine: 'né ici' },
   });
+
+  useEffect(() => {
+    reset(pigeon || { sexe: 'male', statut: 'actif', origine: 'né ici' });
+  }, [pigeon, reset]);
 
   const [createPigeon, { isLoading: creating }] = useCreatePigeonMutation();
   const [updatePigeon, { isLoading: updating }] = useUpdatePigeonMutation();
@@ -92,6 +97,11 @@ export default function PigeonForm({ isOpen, onClose, pigeon = null }) {
             <option value="mort">Mort</option>
             <option value="perdu">Perdu</option>
           </select>
+        </div>
+        {/* Photo URL */}
+        <div className="col-span-2">
+          <label className="label">Lien de la photo (URL)</label>
+          <input type="url" className="input" placeholder="https://..." {...register('photo_url')} />
         </div>
         {/* Notes */}
         <div className="col-span-2">
