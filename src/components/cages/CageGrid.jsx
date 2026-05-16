@@ -85,8 +85,7 @@ export default function CageGrid({ voliere, view, filterStatut = 'all', selected
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '100%', opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 32 }}
-            className="fixed top-16 right-0 bottom-0 z-40 overflow-hidden"
-            style={{ width: PANEL_WIDTH }}
+            className="fixed top-16 right-0 bottom-0 z-40 overflow-hidden w-full sm:w-[360px]"
           >
             <div className="h-full bg-white/98 backdrop-blur-2xl border-l border-slate-100/80 shadow-[−4px_0_32px_rgba(0,0,0,0.08)] relative flex flex-col">
               <CageDetailPanel
