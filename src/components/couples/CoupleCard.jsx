@@ -43,8 +43,12 @@ export default function CoupleCard({ couple, onSeparer, onView }) {
         <div className="flex items-center gap-2 bg-slate-50 rounded-xl p-3 border border-slate-100">
           {/* Male */}
           <div className="flex-1 text-center">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center mx-auto mb-1">
-              <span className="text-xl">🕊️</span>
+            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center mx-auto mb-1 overflow-hidden">
+              {couple.male?.photo_url ? (
+                <img src={couple.male.photo_url} alt="Male" className="w-full h-full object-cover" />
+              ) : (
+                <img src="/male-placeholder.png" alt="Male Placeholder" className="w-full h-full object-cover opacity-90 p-1" />
+              )}
             </div>
             <p className="text-[10px] font-extrabold uppercase text-blue-500 tracking-widest">Mâle</p>
             <p className="text-xs font-bold text-slate-700 truncate">{couple.male?.bague || '?'}</p>
@@ -60,8 +64,12 @@ export default function CoupleCard({ couple, onSeparer, onView }) {
 
           {/* Female */}
           <div className="flex-1 text-center">
-            <div className="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center mx-auto mb-1">
-              <span className="text-xl">🐦</span>
+            <div className="w-10 h-10 rounded-xl bg-pink-100 flex items-center justify-center mx-auto mb-1 overflow-hidden">
+              {couple.femelle?.photo_url ? (
+                <img src={couple.femelle.photo_url} alt="Femelle" className="w-full h-full object-cover" />
+              ) : (
+                <img src="/female-placeholder.png" alt="Femelle Placeholder" className="w-full h-full object-cover opacity-90 p-1" />
+              )}
             </div>
             <p className="text-[10px] font-extrabold uppercase text-pink-500 tracking-widest">Femelle</p>
             <p className="text-xs font-bold text-slate-700 truncate">{couple.femelle?.bague || '?'}</p>

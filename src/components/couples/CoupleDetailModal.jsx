@@ -18,10 +18,11 @@ function PigeonCard({ pigeon, role, isMale }) {
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0 ${
         isMale ? 'bg-blue-100' : 'bg-pink-100'
       }`}>
-        {pigeon.photo_url
-          ? <img src={pigeon.photo_url} alt={pigeon.bague} className="w-full h-full object-cover rounded-xl" />
-          : isMale ? '🕊️' : '🐦'
-        }
+        {pigeon.photo_url ? (
+          <img src={pigeon.photo_url} alt={pigeon.bague} className="w-full h-full object-cover" />
+        ) : (
+          <img src={isMale ? "/male-placeholder.png" : "/female-placeholder.png"} alt="Placeholder" className="w-full h-full object-cover p-1 opacity-90" />
+        )}
       </div>
       <div className="flex-1 min-w-0">
         <p className={`text-[10px] font-extrabold uppercase tracking-widest mb-0.5 ${
@@ -78,9 +79,21 @@ export default function CoupleDetailModal({ isOpen, onClose, couple: initialCoup
           >
             {/* Male ❤️ Female */}
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-white shadow border-2 border-blue-100 flex items-center justify-center text-3xl">🕊️</div>
+              <div className="w-16 h-16 rounded-2xl bg-white shadow border-2 border-blue-100 flex items-center justify-center text-3xl overflow-hidden">
+                {couple.male?.photo_url ? (
+                  <img src={couple.male.photo_url} alt="Male" className="w-full h-full object-cover" />
+                ) : (
+                  <img src="/male-placeholder.png" alt="Male Placeholder" className="w-full h-full object-cover p-1 opacity-90" />
+                )}
+              </div>
               <span className="text-2xl">❤️</span>
-              <div className="w-16 h-16 rounded-2xl bg-white shadow border-2 border-pink-100 flex items-center justify-center text-3xl">🐦</div>
+              <div className="w-16 h-16 rounded-2xl bg-white shadow border-2 border-pink-100 flex items-center justify-center text-3xl overflow-hidden">
+                {couple.femelle?.photo_url ? (
+                  <img src={couple.femelle.photo_url} alt="Femelle" className="w-full h-full object-cover" />
+                ) : (
+                  <img src="/female-placeholder.png" alt="Femelle Placeholder" className="w-full h-full object-cover p-1 opacity-90" />
+                )}
+              </div>
             </div>
 
             <div className="text-center">

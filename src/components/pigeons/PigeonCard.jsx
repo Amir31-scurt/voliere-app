@@ -38,10 +38,11 @@ export default function PigeonCard({ pigeon, onEdit, onView }) {
           <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 overflow-hidden shadow-inner ${
             isMale ? 'bg-blue-100' : 'bg-amber-100'
           }`}>
-            {pigeon.photo_url
-              ? <img src={pigeon.photo_url} alt="Pigeon" className="w-full h-full object-cover" />
-              : <span className="text-3xl">{isMale ? '🕊️' : '🐦'}</span>
-            }
+            {pigeon.photo_url ? (
+              <img src={pigeon.photo_url} alt="Pigeon" className="w-full h-full object-cover" />
+            ) : (
+              <img src={isMale ? "/male-placeholder.png" : "/female-placeholder.png"} alt="Pigeon Placeholder" className="w-full h-full object-cover p-1 opacity-90" />
+            )}
           </div>
 
           <div className="flex-1 min-w-0 pt-0.5">

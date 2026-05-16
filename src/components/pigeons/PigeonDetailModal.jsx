@@ -81,10 +81,11 @@ export default function PigeonDetailModal({ isOpen, onClose, pigeon, onEdit }) {
           <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shrink-0 overflow-hidden shadow-sm ${
             isMale ? 'bg-blue-100' : 'bg-pink-100'
           }`}>
-            {pigeon.photo_url
-              ? <img src={pigeon.photo_url} alt="Pigeon" className="w-full h-full object-cover" />
-              : <span className="text-4xl">{isMale ? '🕊️' : '🐦'}</span>
-            }
+            {pigeon.photo_url ? (
+              <img src={pigeon.photo_url} alt="Pigeon" className="w-full h-full object-cover" />
+            ) : (
+              <img src={isMale ? "/male-placeholder.png" : "/female-placeholder.png"} alt="Pigeon Placeholder" className="w-full h-full object-cover p-1 opacity-90" />
+            )}
           </div>
 
           {/* Identity */}

@@ -162,12 +162,11 @@ function PigeonCard({ pigeon, role }) {
       <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 overflow-hidden ${
         isMale ? 'bg-blue-100' : 'bg-pink-100'
       }`}>
-        {pigeon.photo_url
-          ? <img src={pigeon.photo_url} alt={pigeon.bague} className="w-full h-full object-cover" />
-          : <span className={`text-2xl leading-none ${isMale ? 'text-blue-500' : 'text-pink-500'}`}>
-              {isMale ? '♂' : '♀'}
-            </span>
-        }
+        {pigeon.photo_url ? (
+          <img src={pigeon.photo_url} alt={pigeon.bague} className="w-full h-full object-cover" />
+        ) : (
+          <img src={isMale ? "/male-placeholder.png" : "/female-placeholder.png"} alt="Placeholder" className="w-full h-full object-cover p-1 opacity-90" />
+        )}
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-0.5">{role}</p>

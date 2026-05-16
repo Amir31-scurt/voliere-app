@@ -9,7 +9,7 @@ const STATUS = {
 };
 
 /* ─── Pigeon chip ─────────────────────────────────────────────────── */
-function PigeonChip({ sexe, bague, nom }) {
+function PigeonChip({ sexe, bague, nom, photoUrl }) {
   const isMale = sexe === 'male';
   return (
     <div className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border text-[11px] font-bold backdrop-blur-sm ${
@@ -17,9 +17,13 @@ function PigeonChip({ sexe, bague, nom }) {
         ? 'bg-white/70 border-blue-200 text-blue-800'
         : 'bg-white/70 border-pink-200 text-pink-800'
     }`}>
-      <span className={`text-sm font-normal leading-none ${isMale ? 'text-blue-500' : 'text-pink-500'}`}>
-        {isMale ? '♂' : '♀'}
-      </span>
+      <div className={`w-4 h-4 rounded-full overflow-hidden shrink-0 flex items-center justify-center ${isMale ? 'bg-blue-100' : 'bg-pink-100'}`}>
+        {photoUrl ? (
+          <img src={photoUrl} alt="Pigeon" className="w-full h-full object-cover" />
+        ) : (
+          <img src={isMale ? "/male-placeholder.png" : "/female-placeholder.png"} alt="Placeholder" className="w-full h-full object-cover opacity-90" />
+        )}
+      </div>
       <span className="truncate">{nom || bague}</span>
     </div>
   );
@@ -97,16 +101,16 @@ export default function CageCard({ cage, onClick, isSelected, view = 'grid' }) {
       <div className={`relative z-10 flex ${isList ? 'flex-row items-center flex-1 justify-end gap-2 mt-0' : 'flex-col gap-1.5 mt-3'}`}>
 
         {isPigeon && cage.pigeon && (
-          <PigeonChip sexe={cage.pigeon.sexe} bague={cage.pigeon.bague} nom={cage.pigeon.nom} />
+          <PigeonChip sexe={cage.pigeon.sexe} bague={cage.pigeon.bague} nom={cage.pigeon.nom} photoUrl={cage.pigeon.photo_url} />
         )}
 
         {isCouple && cage.couple && (
           <div className={`flex gap-1 ${isList ? 'flex-row' : 'flex-col'}`}>
             {cage.couple.male && (
-              <PigeonChip sexe="male" bague={cage.couple.male.bague} nom={cage.couple.male.nom} />
+              <PigeonChip sexe="male" bague={cage.couple.male.bague} nom={cage.couple.male.nom} photoUrl={cage.couple.male.photo_url} />
             )}
             {cage.couple.femelle && (
-              <PigeonChip sexe="femelle" bague={cage.couple.femelle.bague} nom={cage.couple.femelle.nom} />
+              <PigeonChip sexe="femelle" bague={cage.couple.femelle.bague} nom={cage.couple.femelle.nom} photoUrl={cage.couple.femelle.photo_url} />
             )}
           </div>
         )}
